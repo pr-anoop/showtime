@@ -7,23 +7,28 @@ module.exports = function(grunt) {
         concat: {
             js: {
                 src: [
-                    'js/libs/*.js', // All JS in the libs folder
-                    'js/global.js'  // This specific file
+                    'js/modules/**/*.js'
                 ],
-                dest: 'js/build/production.js',
+                dest: 'js/dist/showtime.js',
             },
             css: {
                 src: [
-                    'css/libs/*.css', // All JS in the libs folder
-                    'css/global.css'  // This specific file
+                    'css/libs/*.css', 
+                    'css/global.css'
                 ],
-                dest: 'css/build/production.css',
+                dest: 'css/dist/showtime.css',
+            }
+        },
+        ngmin: {
+            controllers: {
+                src: ['js/modules/**/*.js'],
+                dest: 'js/dist/showtime.js'
             }
         },
         uglify: {
             build: {
-                src: 'js/build/production.js',
-                dest: 'js/build/production.min.js'
+                src: 'js/dist/showtime.js',
+                dest: 'js/dist/showtime.min.js'
             }
         },
         imagemin: {
@@ -39,27 +44,11 @@ module.exports = function(grunt) {
         cssmin: {
           combine: {
             files: {
-              'css/build/production.min.css': ['css/build/production.css']
+              'css/dist/showtime.min.css': ['css/dist/showtime.css']
             }
           }
-        },
-
-        watch: {
-            scripts: {
-                files: [
-                    'js/libs/*.js', // All JS in the libs folder
-                    'js/global.js'  // This specific file
-                ],
-                tasks: ['concat', 'uglify'],
-                options: {
-                    spawn: false,
-                },
-            } 
         }
-
-
     });
 
-
-    grunt.registerTask('default', ['concat', 'uglify', 'cssmin', 'watch']); //imagemin
+    grunt.registerTask('default', ['concat', 'ngmin', 'uglify' , 'cssmin', 'imagemin']); //watch
 };
