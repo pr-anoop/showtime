@@ -7,9 +7,9 @@ module.exports = function(grunt) {
         concat: {
             js: {
                 src: [
-                    'js/modules/**/*.js'
+                    'js/modules/*.js'
                 ],
-                dest: 'js/dist/showtime.js',
+                dest: 'js/dist/ngshowtime.js',
             },
             css: {
                 src: [
@@ -21,7 +21,7 @@ module.exports = function(grunt) {
         },
         ngmin: {
             controllers: {
-                src: ['js/modules/**/*.js'],
+                src: ['js/dist/ngshowtime.js'],
                 dest: 'js/dist/showtime.js'
             }
         },

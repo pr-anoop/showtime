@@ -1,38 +1,17 @@
 <!DOCTYPE html>
 <html ng-app="showtime">
 <head>
-	<title>Automation sample project</title>
+	<title>Show Time</title>
 	<link rel="stylesheet" type="text/css" href="css/dist/showtime.min.css">
 </head>
 <body ng-controller="ChannelsCtrl">
-	My Language: {{language}}
+	
 	<div class="container rows">
-		<div class="tile col-xs-3">
-			<h1>Head1</h1>
-			<p>Content goes here!!</p>
+		<div class="tile col-xs-3" ng-repeat="channel in channels">
+			<h1 ng-bind="channel.name"></h1>
+			<p>Alias: {{channel.alias}}</p>
 			<div class="grid-footer">
-				<button class="goto-link">Go To Link</button>
-			</div>
-		</div>
-		<div class="tile col-xs-3">
-			<h1>Head1</h1>
-			<p>Content goes here!!</p>
-			<div class="grid-footer">
-				<button class="goto-link">Go To Link</button>
-			</div>
-		</div>
-		<div class="tile col-xs-3">
-			<h1>Head1</h1>
-			<p>Content goes here!!</p>
-			<div class="grid-footer">
-				<button class="goto-link">Go To Link</button>
-			</div>
-		</div>
-		<div class="tile col-xs-3">
-			<h1>Head1</h1>
-			<p>Content goes here!!</p>
-			<div class="grid-footer">
-				<button class="goto-link">Go To Link</button>
+				<button class="goto-link">Programs</button>
 			</div>
 		</div>
 	</div>

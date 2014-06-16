@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Asianet",
+        "alias": "asianet"
+    },
+    {
+        "name": "Surya TV",
+        "alias": "surya-tv"
+    },
+    {
+        "name": "Sun TV",
+        "alias": "sun-tv"
+    },
+    {
+        "name": "K TV",
+        "alias": "k-tv"
+    },
+    {
+        "name": "Sony Six",
+        "alias": "sony-six"
+    },
+    {
+        "name": "Sony Pix",
+        "alias": "sony-pix"
+    }
+]
