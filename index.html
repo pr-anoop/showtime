@@ -2,22 +2,24 @@
 <html ng-app="showtime">
 <head>
 	<title>Show Time</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 	<link rel="stylesheet" type="text/css" href="css/dist/showtime.min.css">
 </head>
-<body ng-controller="ChannelsCtrl">
-	
-	<div class="container rows">
-		<div class="tile col-xs-3" ng-repeat="channel in channels">
-			<h1 ng-bind="channel.name"></h1>
-			<p>Alias: {{channel.alias}}</p>
-			<div class="grid-footer">
-				<button class="goto-link">Programs</button>
-			</div>
+<body>
+
+	<div class="wrap">
+		<div class="grids_of_3">
+			<ng-view>Loadning</ng-view>		
 		</div>
 	</div>
+
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="bower_components/angular/angular.min.js"></script>
 	<script src="bower_components/angular-route/angular-route.min.js"></script>
 	<script src="js/dist/showtime.min.js"></script>
 </body>
 </html>
+
+
+
