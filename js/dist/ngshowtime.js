@@ -4,33 +4,43 @@ showtime.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/', {
-        templateUrl: 'partials/channel-list.html',
-        controller: 'ChannelsCtrl'
+        templateUrl: 'partials/search.html',
+        controller: 'SearchCtrl'
       }).
-      when('/program/:channel', {
-        templateUrl: 'partials/programs.html',
-        controller: 'ProgramsCtrl'
+      when('/search/:term', {
+        templateUrl: 'partials/search-results.html',
+        controller: 'SearchResultCtrl'
+      }).
+      when('/404page', {
+        templateUrl: 'partials/404.html'
       }).
       otherwise({
         redirectTo: '/404page'
       });
   }]);
-showtime.controller('ChannelsCtrl', function($scope, showtimeService) {
+showtime.controller('SearchCtrl', function($scope, $location) {
+	angular.element('body').addClass('skin-blue full');
+	angular.element('.wrapper').addClass('bg-none');
 
-	showtimeService.getchannels().then(function(channels) {
-		$scope.channels = channels;
-	}, function(status) {
-		console.log(status);
-	});
-	
+	$scope.search = function(form, term) {
+		
+		if(form.$valid) {
+			$location.url('/search/' + term);
+		}	
+	}
+
 });
 
-showtime.controller('ProgramsCtrl', function($scope, $routeParams, showtimeService) {
 
-	showtimeService.getPrograms($routeParams.channel).then(function(programs) {
-		console.log(programs);
-	}, function(status) {
-		console.log("Return status", status);
+showtime.controller('SearchResultCtrl', function($scope, $http) {
+	angular.element('body').removeClass('skin-blue full');
+	angular.element('.wrapper').removeClass('bg-none');
+
+	$scope.data = [];
+
+	$http({method: 'GET', url: 'http://localhost:8983/solr/collection1/select?q=arh&wt=json&indent=true'}).
+	success(function(data) {
+		$scope.data = data.response.docs;
 	});
 
 });

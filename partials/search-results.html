@@ -1,0 +1,58 @@
+<!-- content -->
+<div class="content-wrapper">
+    <div class="col-sm-12 search-wrapper">
+        <div class="input-group search-block-inner">
+            <input type="" class="form-control height-35" name="country" id="autocomplete-dynamic" placeholder="Search for...">
+            <span class="input-group-btn">
+                <button class="btn btn-default blue-bg height-35" type="button"><i class="fa fa-search"></i> Search</button>
+            </span>
+        </div>
+    </div> 
+    <div class="col-sm-12 white-bg">
+
+        <!-- Search result -->
+        <div class="search-result-holder" ng-repeat="item in data">
+            <div class="search-result-block">
+                <h1><a href="#">{{item.Title[0]}}</a></h1>
+                <p >{{item.text[0]}}</p>
+                <div class="col-sm-12">
+                    <div class="row ">
+                        <div class="col-sm-6 text-left no-padding-left">
+                            Last searched  <span class="date">Jan 15th, 2015 10:00 pm</span>
+                        </div>
+                        <div class="col-sm-6 text-right like-block  no-padding-right">
+                            Was this information useful?  
+                           
+                            <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                              <button type="button" class="btn btn-default btn-lg active down "><i class="fa fa-thumbs-down"></i></button>
+                              <button type="button" class="btn btn-default btn-lg active up "><i class="fa fa-thumbs-up"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <!-- <nav>
+            <ul class="pagination pull-right">
+                <li>
+                  <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                  <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+            </ul>
+        </nav>   -->
+    </div> 
+        
+</div>

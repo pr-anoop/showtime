@@ -4,12 +4,15 @@ showtime.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/', {
-        templateUrl: 'partials/channel-list.html',
-        controller: 'ChannelsCtrl'
+        templateUrl: 'partials/search.html',
+        controller: 'SearchCtrl'
       }).
-      when('/program/:channel', {
-        templateUrl: 'partials/programs.html',
-        controller: 'ProgramsCtrl'
+      when('/search/:term', {
+        templateUrl: 'partials/search-results.html',
+        controller: 'SearchResultCtrl'
+      }).
+      when('/404page', {
+        templateUrl: 'partials/404.html'
       }).
       otherwise({
         redirectTo: '/404page'

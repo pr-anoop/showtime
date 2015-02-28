@@ -13,7 +13,7 @@ module.exports = function(grunt) {
             },
             css: {
                 src: [
-                    'css/libs/*.css', 
+                    'css/libs/*.css',
                     'css/global.css'
                 ],
                 dest: 'css/dist/showtime.css',
@@ -50,5 +50,5 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default', ['concat', 'ngmin', 'uglify' , 'cssmin', 'imagemin']); //watch
+    grunt.registerTask('default', ['concat', 'ngmin', 'uglify' , 'cssmin', 'imagemin']);
 };

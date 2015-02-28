@@ -3,34 +3,39 @@ showtime.config([
   '$routeProvider',
   function ($routeProvider) {
     $routeProvider.when('/', {
-      templateUrl: 'partials/channel-list.html',
-      controller: 'ChannelsCtrl'
-    }).when('/program/:channel', {
-      templateUrl: 'partials/programs.html',
-      controller: 'ProgramsCtrl'
-    }).otherwise({ redirectTo: '/404page' });
+      templateUrl: 'partials/search.html',
+      controller: 'SearchCtrl'
+    }).when('/search/:term', {
+      templateUrl: 'partials/search-results.html',
+      controller: 'SearchResultCtrl'
+    }).when('/404page', { templateUrl: 'partials/404.html' }).otherwise({ redirectTo: '/404page' });
   }
 ]);
-showtime.controller('ChannelsCtrl', [
+showtime.controller('SearchCtrl', [
   '$scope',
-  'showtimeService',
-  function ($scope, showtimeService) {
-    showtimeService.getchannels().then(function (channels) {
-      $scope.channels = channels;
-    }, function (status) {
-      console.log(status);
-    });
+  '$location',
+  function ($scope, $location) {
+    angular.element('body').addClass('skin-blue full');
+    angular.element('.wrapper').addClass('bg-none');
+    $scope.search = function (form, term) {
+      if (form.$valid) {
+        $location.url('/search/' + term);
+      }
+    };
   }
 ]);
-showtime.controller('ProgramsCtrl', [
+showtime.controller('SearchResultCtrl', [
   '$scope',
-  '$routeParams',
-  'showtimeService',
-  function ($scope, $routeParams, showtimeService) {
-    showtimeService.getPrograms($routeParams.channel).then(function (programs) {
-      console.log(programs);
-    }, function (status) {
-      console.log('Return status', status);
+  '$http',
+  function ($scope, $http) {
+    angular.element('body').removeClass('skin-blue full');
+    angular.element('.wrapper').removeClass('bg-none');
+    $scope.data = [];
+    $http({
+      method: 'GET',
+      url: 'http://localhost:8983/solr/collection1/select?q=arh&wt=json&indent=true'
+    }).success(function (data) {
+      $scope.data = data.response.docs;
     });
   }
 ]);
