@@ -1,20 +1,22 @@
 <!-- content -->
 <div class="content-wrapper">
+<form class="form-search clearfix" ng-submit="search(search_form, search_term)" name="search_form" novalidate>
     <div class="col-sm-12 search-wrapper">
         <div class="input-group search-block-inner">
-            <input type="" class="form-control height-35" name="country" id="autocomplete-dynamic" placeholder="Search for...">
+			<input type="text" class="form-control height-50" required ng-model="search_term" name="country" id="autocomplete-dynamic" placeholder="Search for...">
             <span class="input-group-btn">
-                <button class="btn btn-default blue-bg height-35" type="button"><i class="fa fa-search"></i> Search</button>
+                <button class="btn btn-default blue-bg height-50" type="submit"><i class="fa fa-search"></i> Search</button>
             </span>
         </div>
     </div> 
+</form>
     <div class="col-sm-12 white-bg">
 
         <!-- Search result -->
         <div class="search-result-holder" ng-repeat="item in data">
             <div class="search-result-block">
-                <h1><a href="#">{{item.Title[0]}}</a></h1>
-                <p >{{item.text[0]}}</p>
+                <h1><a href="#">{{item.documentResult.Title[0]}}</a></h1>
+                <p >{{item.documentResult.text[0]}}</p>
                 <div class="col-sm-12">
                     <div class="row ">
                         <div class="col-sm-6 text-left no-padding-left">

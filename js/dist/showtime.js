@@ -27,15 +27,24 @@ showtime.controller('SearchCtrl', [
 showtime.controller('SearchResultCtrl', [
   '$scope',
   '$http',
-  function ($scope, $http) {
+  '$location',
+  '$routeParams',
+  function ($scope, $http, $location, $routeParams) {
     angular.element('body').removeClass('skin-blue full');
     angular.element('.wrapper').removeClass('bg-none');
-    $scope.data = [];
+    var term = $routeParams.term;
+    $scope.search = function (form, term) {
+      if (form.$valid) {
+        $location.url('/search/' + term);
+      }
+    };
+    var data = [];
+    $scope.data = data.solrDocuments;
     $http({
       method: 'GET',
-      url: 'http://localhost:8983/solr/collection1/select?q=arh&wt=json&indent=true'
+      url: 'http://192.168.1.73:8080/Amritloginsample/CustomDispatchAction.do?searchword=' + term + '+repository&pageNumber=1'
     }).success(function (data) {
-      $scope.data = data.response.docs;
+      $scope.data = data.solrDocuments;
     });
   }
 ]);
